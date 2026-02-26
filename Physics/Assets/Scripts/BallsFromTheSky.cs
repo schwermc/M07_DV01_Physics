@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BallsFromTheSky : MonoBehaviour
 {
-    public GameObject ballPrefab;
     public float interval = 0.5f;
 
     [SerializeField] float range = 4f;
@@ -30,7 +29,6 @@ public class BallsFromTheSky : MonoBehaviour
 
     void NewBall(Vector3 position)
     {
-        //Instantiate(ballPrefab, position, Quaternion.identity);
         GameObject ball = objectPooler.GetPooledObject();
         if (ball != null)
         {
