@@ -28,24 +28,39 @@ public class ShooterBallGame : MonoBehaviour
         if (shooter0 == null || shooter1 == null) { Debug.LogError("Requires shooter transforms"); }
 
         Time.fixedDeltaTime = 0.001f;
+
+        AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+        processor.onBeat.AddListener(OnBeatDetected);
     }
 
-    void Update()
-    {
-        if (Time.time > nextBallTime)
-        {
-            if (shooterId == 0)
-            {
-                ShootBall(shooter0);
-                shooterId = 1;
-            }
-            else
-            {
-                ShootBall(shooter1);
-                shooterId = 0;
-            }
+    //void Update()
+    //{
+    //    if (Time.time > nextBallTime)
+    //    {
+    //        if (shooterId == 0)
+    //        {
+    //            ShootBall(shooter0);
+    //            shooterId = 1;
+    //        }
+    //        else
+    //        {
+    //            ShootBall(shooter1);
+    //            shooterId = 0;
+    //        }
 
-            nextBallTime = Time.time + interval;
+    //        nextBallTime = Time.time + interval;
+    //    }
+    //}
+
+    void OnBeatDetected()
+    {
+        if (Random.value < 0.5f)
+        {
+            ShootBall(shooter0);
+        }
+        else
+        {
+            ShootBall(shooter1);
         }
     }
 
